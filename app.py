@@ -21,7 +21,7 @@ def list_files(dir_path: str, extension: Optional[str] = None, recursive: bool =
         pattern = "**/*" if recursive else "*"
     return [str(p.resolve()) for p in base.rglob(pattern) if p.is_file()]
 
-files = list_files(r"C:\Users\amori\Projects\Produtos\MarketingStrategy\Arquivos", ".csv")
+files = list_files("Arquivos", ".csv")
 
 @st.cache_data
 def load_all_data(files: List[str]) -> pd.DataFrame:
@@ -364,4 +364,5 @@ if "df_filtrado" in st.session_state and "CNPJ" in st.session_state.df_filtrado.
 else:
     # se o dataframe filtrado existe, mas não tem coluna CNPJ
     if "df_filtrado" in st.session_state:
+
         st.sidebar.info("A coluna **CNPJ** não existe na sua busca.")
